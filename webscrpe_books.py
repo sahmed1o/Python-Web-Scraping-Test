@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 # link we are using: http://books.toscrape.com/
 
 
-def get_books(max_pages):
+def get_books(all_pages):
     page = 1
-    while page <= max_pages:
+    while page <= all_pages:
         url = 'http://books.toscrape.com/catalogue/page-' + str(page) + '.html'
         get_source = requests.get(url)
         plain_text = get_source.text
