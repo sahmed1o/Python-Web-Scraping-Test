@@ -7,13 +7,10 @@ from bs4 import BeautifulSoup
 def get_books(all_pages):
     page = 1
     while page <= all_pages:
-        url = 'http://books.toscrape.com/catalogue/page-' + str(page) + '.html'
-        get_source = requests.get(url)
-        plain_text = get_source.text
-        soap_scrape = BeautifulSoup(plain_text, 'html.parser')
+        get_source = requests.get('http://books.toscrape.com/catalogue/page-' + str(page) + '.html')
+        soap_scrape = BeautifulSoup(get_source.text, 'html.parser')
         for link in soap_scrape.find_all('img', {'class': 'thumbnail'}):
-            href = 'http://books.toscrape.com/' + link.get('src')
-            print(href)
+            print('http://books.toscrape.com/' + link.get('src'))
         page += 1
 
 
