@@ -7,13 +7,10 @@ from bs4 import BeautifulSoup
 def get_quotes(all_pages):
     page = 1
     while page <= all_pages:
-        url = 'http://quotes.toscrape.com/page/' + str(page) + '/'
-        get_source = requests.get(url)
-        plain_text = get_source.text
-        soap_scrape = BeautifulSoup(plain_text, 'html.parser')
+        get_source = requests.get('http://quotes.toscrape.com/page/' + str(page) + '/')
+        soap_scrape = BeautifulSoup(get_source.text, 'html.parser')
         for contentstuff in soap_scrape.find_all('span', {'class': 'text'}):
-            content = contentstuff.string
-            print(content)
+            print(contentstuff.string)
             print('\n')
         page += 1
 
